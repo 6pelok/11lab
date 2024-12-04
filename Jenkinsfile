@@ -7,22 +7,24 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Set up Python') {
+
+        stage('Install Dependencies') {
             steps {
-                sh 'python3 -m venv venv'
-                sh '. venv/bin/activate'
-                sh 'pip install -r 11Lab/requirements.txt'
+                sh 'pip install --upgrade pip'
+                sh 'pip install -r requirements.txt'
             }
         }
-        stage('Run tests') {
+
+        stage('Run Tests') {
             steps {
-                sh 'pytest 11Lab/main_test.py --junitxml=11Lab/report.xml'
+                sh 'pytest --junitxml=report.xml'
             }
         }
-        stage('Archive Results') {
-            steps {
-                archiveArtifacts artifacts: '11Lab/report.xml', allowEmptyArchive: true
-            }
+    }
+
+    post {
+        always {
+            junit 'report.xml'
         }
     }
 }

@@ -1,6 +1,6 @@
 import pytest
 from main import multiply, divide, distance, solve_quadratic, geometric_sum
-#Мельников Илья 107д2
+
 def test_multiply():
     assert multiply(2, 3) == 6
     assert multiply(-1, 5) == -5
@@ -24,4 +24,5 @@ def test_solve_quadratic():
 def test_geometric_sum():
     assert geometric_sum(1, 2, 3) == 7
     assert geometric_sum(3, 1, 5) == 15
+
 # Мельников Илья 107д2

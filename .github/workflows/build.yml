@@ -23,3 +23,9 @@ jobs:
       - name: Run tests
         run: |
           pytest --junitxml=report.xml
+
+      - name: Upload test report
+        uses: actions/upload-artifact@v4
+        with:
+          name: report
+          path: report.xml
